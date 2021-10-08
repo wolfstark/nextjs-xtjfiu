@@ -26,7 +26,7 @@ export default function Parametric() {
       ctx.stroke();
     }
 
-    const TAU_SEGMENTS = 60;
+    const TAU_SEGMENTS = 6;
     const TAU = Math.PI * 2;
 
     function arc(x0, y0, radius, startAng = 0, endAng = Math.PI * 2) {
