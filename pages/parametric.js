@@ -11,37 +11,19 @@ export default function Parametric() {
     ctx.translate(0.5 * width, 0.5 * height);
     ctx.scale(1, -1);
 
-    function draw(points, strokeStyle = 'black', fillStyle = null) {
-      ctx.strokeStyle = strokeStyle;
-      ctx.beginPath();
-      ctx.moveTo(...points[0]);
-      for (let i = 1; i < points.length; i++) {
-        ctx.lineTo(...points[i]);
-      }
-      ctx.closePath();
-      if (fillStyle) {
-        ctx.fillStyle = fillStyle;
-        ctx.fill();
-      }
-      ctx.stroke();
-    }
-
-    const TAU_SEGMENTS = 6;
-    const TAU = Math.PI * 2;
-
-    function arc(x0, y0, radius, startAng = 0, endAng = Math.PI * 2) {
-      const ang = Math.min(TAU, endAng - startAng);
-      const ret = ang === TAU ? [] : [[x0, y0]];
-      const segments = Math.round((TAU_SEGMENTS * ang) / TAU);
-      for (let i = 0; i <= segments; i++) {
-        const x = x0 + radius * Math.cos(startAng + (ang * i) / segments);
-        const y = y0 + radius * Math.sin(startAng + (ang * i) / segments);
+    const LINE_SEGMENTS = 60;
+    function parabola(x0, y0, p, min, max) {
+      const ret = [];
+      for (let i = 0; i <= LINE_SEGMENTS; i++) {
+        const s = i / 60;
+        const t = min * (1 - s) + max * s;
+        const x = x0 + 2 * p * t ** 2;
+        const y = y0 + 2 * p * t;
         ret.push([x, y]);
       }
       return ret;
     }
-
-    draw(arc(0, 0, 100));
+    draw(parabola(0, 0, 5.5, -10, 10));
   }, []);
   return <canvas width="512" height="512" ref={ref}></canvas>;
 }
