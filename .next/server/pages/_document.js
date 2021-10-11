@@ -98,17 +98,6 @@ module.exports = require("prop-types");;
 "use strict";
 module.exports = require("react");;
 
-/***/ }),
-
-/***/ "styled-jsx/server":
-/*!************************************!*\
-  !*** external "styled-jsx/server" ***!
-  \************************************/
-/***/ (function(module) {
-
-"use strict";
-module.exports = require("styled-jsx/server");;
-
 /***/ })
 
 };
