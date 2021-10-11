@@ -11,6 +11,21 @@ export default function Parametric() {
     ctx.translate(0.5 * width, 0.5 * height);
     ctx.scale(1, -1);
 
+    function draw(points, strokeStyle = 'black', fillStyle = null) {
+      ctx.strokeStyle = strokeStyle;
+      ctx.beginPath();
+      ctx.moveTo(...points[0]);
+      for (let i = 1; i < points.length; i++) {
+        ctx.lineTo(...points[i]);
+      }
+      ctx.closePath();
+      if (fillStyle) {
+        ctx.fillStyle = fillStyle;
+        ctx.fill();
+      }
+      ctx.stroke();
+    }
+
     const LINE_SEGMENTS = 60;
     function parabola(x0, y0, p, min, max) {
       const ret = [];
